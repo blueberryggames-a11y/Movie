@@ -324,7 +324,6 @@
     border: 1px solid var(--border-soft);
     transition: transform 0.22s, box-shadow 0.22s, border-color 0.2s;
     aspect-ratio: 2/3;
-    group: true;
   }
   .movie-card:hover {
     transform: translateY(-5px) scale(1.02);
@@ -691,11 +690,10 @@
 <script>
 // ─── CONFIG ─────────────────────────────────────────────────────────────────
 const TMDB_KEY = '4e44d9029b1270a757cddc766a1bcb63';
-const TMDB    = 'https://api.themoviedb.org/3';
-const IMG     = 'https://image.tmdb.org/t/p';
+const TMDB     = 'https://api.themoviedb.org/3';
+const IMG      = 'https://image.tmdb.org/t/p';
 
 // ─── PROVIDERS ───────────────────────────────────────────────────────────────
-// All verified working with TMDB IDs as of mid-2025
 const PROVIDERS = [
   {
     id: 'vidsrc',
@@ -708,6 +706,24 @@ const PROVIDERS = [
     name: 'VidLink',
     url: id => `https://vidlink.pro/movie/${id}?autoplay=true`,
     desc: 'Fast, clean UI'
+  },
+  {
+    id: 'vidsrc_cc',
+    name: 'VidSrc.cc',
+    url: id => `https://vidsrc.cc/v2/embed/movie/${id}`,
+    desc: 'High quality streams'
+  },
+  {
+    id: 'autoembed',
+    name: 'AutoEmbed',
+    url: id => `https://player.autoembed.cc/embed/movie/${id}`,
+    desc: 'Auto-server switching'
+  },
+  {
+    id: 'smashystream',
+    name: 'SmashyStream',
+    url: id => `https://embed.smashystream.com/playere.php?tmdb=${id}`,
+    desc: 'Multiple source options'
   },
   {
     id: 'vidspark',
@@ -734,6 +750,18 @@ const PROVIDERS = [
     desc: 'Reliable fallback'
   },
   {
+    id: 'vidsrc_icu',
+    name: 'VidSrc.icu',
+    url: id => `https://vidsrc.icu/embed/movie/${id}`,
+    desc: 'Fast loading'
+  },
+  {
+    id: 'frembed',
+    name: 'FrEmbed',
+    url: id => `https://frembed.pro/api/film.php?id=${id}`,
+    desc: 'Clean player layout'
+  },
+  {
     id: 'vidfast',
     name: 'VidFast',
     url: id => `https://vidfast.vc/movie/${id}`,
@@ -745,6 +773,12 @@ const PROVIDERS = [
     url: id => `https://moviesapi.to/movie/${id}`,
     desc: 'HLS streams'
   },
+  {
+    id: 'nontolive',
+    name: 'Nontolive',
+    url: id => `https://www.Nontolive.org/player/movie/${id}`,
+    desc: 'Alternative backup'
+  }
 ];
 
 const GENRES = [
